@@ -1,7 +1,4 @@
 # Tyr
-## User Story
-
-## Criteria
 
 ## Summary
 
