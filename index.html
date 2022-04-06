@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +12,15 @@
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Tyr | Home</title>
 </head>
-<body>
 
-  <form id="game-search-form">
+<body>
+  <header class="level columns">
+    <a class="has-text-primary-dark is-size-1 column is-10">TYR</a>
+
+    <button class="level-right column is-2">Saved List</button>
+  </header>
+
+  <form id="game-search-form" class="has-text-centered">
     <input name="game-search" id="game-searhc" type="text" placeholder="Search"></input>
   </form>
 
@@ -46,7 +53,6 @@
         }
       });
     }
-    
     gameSearch.addEventListener("submit", getGameData);
   </script>
 </body>
