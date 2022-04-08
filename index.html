@@ -24,36 +24,11 @@
     <input name="game-search" id="game-searhc" type="text" placeholder="Search"></input>
   </form>
 
+  <form id="movie-search-form" class="has-text-centered">
+    <input name="movie-search" id="movie-searhc" type="text" placeholder="Search"></input>
+  </form>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
-  <script>
-    var gameSearch = document.getElementById("game-search-form");
-    var game;
-
-    
-
-    var getGameData = function(e) {
-      e.preventDefault();
-      
-      game = gameSearch.children[0].value;
-
-      var apiUrl = "https://api.rawg.io/api/games?search=" + game + "&key=1162dfcd4c004cc3adeeaa606112ab38";
-
-      fetch(apiUrl).then(function(response) {
-        if (response.ok) {
-          response.json().then(function(response) {
-            // for (i = 0; i < response.results.length; i++) {
-            //   console.log(response.results[i]);
-            // }
-            console.log(response);
-          });
-        }
-        else {
-          console.log("Bad response found");
-        }
-      });
-    }
-    gameSearch.addEventListener("submit", getGameData);
-  </script>
 </body>
 </html>
