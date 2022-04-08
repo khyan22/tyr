@@ -6,3 +6,23 @@ body {
     border-radius: 25px;
     width: 700px;
 }
+
+#search-results {
+    margin: 30px 400px auto 400px;
+}
+
+.search-result-li {
+    margin-bottom: 25px;
+    border-radius: 15px;
+    background-color:#20c997;
+}
+
+
+header a {
+    color: #20c997;
+    text-decoration: none;
+}
+
+header button {
+    border-radius: 15px;
+}
