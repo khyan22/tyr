@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="has-background-grey-darker" lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -14,46 +14,19 @@
 </head>
 
 <body>
-  <header class="level columns">
-    <a class="has-text-primary-dark is-size-1 column is-10">TYR</a>
+  <header class="level columns mx-3">
+    <a class="has-text-primary-dark is-size-1 column is-10" href="index.html">TYR</a>
 
-    <button class="level-right column is-2">Saved List</button>
+    <button class="level-right column is-2 button is-primary">Saved List</button>
   </header>
 
-  <form id="game-search-form" class="has-text-centered">
-    <input name="game-search" id="game-searhc" type="text" placeholder="Search"></input>
+  <form id="game-search-form" class="search-form has-text-centered">
+    <input name="search" class="input is-medium" id="search" type="text" placeholder="Games"></input>
+    <button id="apiSwitch"><i class="fa-solid fa-repeat"></i></button>
   </form>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/60dbfb7be7.js" crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
-  <script>
-    var gameSearch = document.getElementById("game-search-form");
-    var game;
-
-    
-
-    var getGameData = function(e) {
-      e.preventDefault();
-      
-      game = gameSearch.children[0].value;
-
-      var apiUrl = "https://api.rawg.io/api/games?search=" + game + "&key=1162dfcd4c004cc3adeeaa606112ab38";
-
-      fetch(apiUrl).then(function(response) {
-        if (response.ok) {
-          response.json().then(function(response) {
-            // for (i = 0; i < response.results.length; i++) {
-            //   console.log(response.results[i]);
-            // }
-            console.log(response);
-          });
-        }
-        else {
-          console.log("Bad response found");
-        }
-      });
-    }
-    gameSearch.addEventListener("submit", getGameData);
-  </script>
 </body>
 </html>
