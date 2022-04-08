@@ -6,9 +6,9 @@ var searchEl = document.querySelector("form")
       fetch(apiUrl).then(function(response) {
         if (response.ok) {
           response.json().then(function(response) {
-            // for (i = 0; i < response.results.length; i++) {
-            //   console.log(response.results[i]);
-            // }
+            for (i = 0; i < response.results.length; i++) {
+              console.log(response.results[i].name);
+            }
             console.log(response);
           });
         }
