@@ -69,7 +69,7 @@ var getMovieData = function(movie) {
         console.log(movieYear);
 
         saveBtn.innerHTML = "<i class='fa-solid fa-plus'></i>";
-        $(saveBtn).addClass("position-absolute top-0 end-0 translate-middle-x rounded-circle");
+        $(saveBtn).addClass("position-absolute top-0 end-0 translate-middle-x rounded-circle btn btn-outline-secondary mt-1 ms-4");
         $(saveBtn).attr("id", "saveBtn");
 
         var listedMovie = document.createElement("li");
