@@ -54,46 +54,51 @@ var searchInput;
 var getMovieData = function(movie) {
   const options = {
     method: 'GET',
-    url: 'https://imdb-data-searching.p.rapidapi.com/om?s=' + movie,
+    url: 'https://imdb-data-searching.p.rapidapi.com' ,
     headers: {
-      'X-RapidAPI-Host': 'imdb-data-searching.p.rapidapi.com',
-      'X-RapidAPI-Key': 'b3f2425f53msh6ddaa98247cb618p193474jsn1b3a90d328d2'
+      'X-RapidAPI-Host': 'imdb-data-searching.p.rapidapi.com/om?s=' + movie,
+      'X-RapidAPI-Key': 'dfa10f1c4bmsh8392381bda8f0fep126b16jsn329de48d0cb8'
     }
   };
 
-  axios.request(options).then(response => {
-      for (i = 0; i < response.data.Search.length; i++) {
-        var movieName = response.data.Search[i].Title;
-        var movieYear = response.data.Search[i].Year;
-        var saveBtn = document.createElement("button");
-        console.log(movieYear);
+  fetch('https://imdb-data-searching.p.rapidapi.com/om?t=the%20game', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
 
-        saveBtn.innerHTML = "<i class='fa-solid fa-plus'></i>";
-        $(saveBtn).addClass("position-absolute top-0 end-0 translate-middle-x rounded-circle btn btn-outline-secondary mt-1 ms-4");
-        $(saveBtn).attr("id", "saveBtn");
+//   axios.request(options).then(response => {
+//       for (i = 0; i < response.data.Search.length; i++) {
+//         var movieName = response.data.Search[i].Title;
+//         var movieYear = response.data.Search[i].Year;
+//         var saveBtn = document.createElement("button");
+//         console.log(movieYear);
 
-        var listedMovie = document.createElement("li");
-        listedMovie.innerHTML = movieName + "<br />" + "Release Date: " + movieYear;
-        $(listedMovie).append(saveBtn);
-        $(listedMovie).addClass("search-result-li mt-3 text-dark h-100 p-4 position-relative");
-        $("#search-results").append(listedMovie);
+//         saveBtn.innerHTML = "<i class='fa-solid fa-plus'></i>";
+//         $(saveBtn).addClass("position-absolute top-0 end-0 translate-middle-x rounded-circle btn btn-outline-secondary mt-1 ms-4");
+//         $(saveBtn).attr("id", "saveBtn");
+
+//         var listedMovie = document.createElement("li");
+//         listedMovie.innerHTML = movieName + "<br />" + "Release Date: " + movieYear;
+//         $(listedMovie).append(saveBtn);
+//         $(listedMovie).addClass("search-result-li mt-3 text-dark h-100 p-4 position-relative");
+//         $("#search-results").append(listedMovie);
 
         
-        $(saveBtn).on("click", function() {
-            var savedText = $(this).parent().text()
-            var savedLi = document.createElement("li")
+//         $(saveBtn).on("click", function() {
+//             var savedText = $(this).parent().text()
+//             var savedLi = document.createElement("li")
 
 
-            $(savedLi).text(savedText);
-            console.log(savedLi)
-            $(savedLi).addClass("dropdown-item");
+//             $(savedLi).text(savedText);
+//             console.log(savedLi)
+//             $(savedLi).addClass("dropdown-item");
             
-            $("#saveList").append(savedLi);
+//             $("#saveList").append(savedLi);
 
-            });
-      }
-      console.log(response)
-  })
+//             });
+//       }
+//       console.log(response)
+//   })
 
 };
 
