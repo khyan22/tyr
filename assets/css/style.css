@@ -28,5 +28,10 @@ header button {
 }
 
 form button {
-    
+    color: #20c997;
+    background-color: #20c997;
+}
+
+.modal-div {
+ color:#20c997
 }

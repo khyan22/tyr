@@ -101,20 +101,24 @@ var getMovieData = function(movie) {
 //changes search input id
 $("#apiSwitch").on("click", function() {
     var gameSearchBar = document.getElementById("#")
+    
     if (searchEl.id === "game-search-form") {
         $(searchEl).attr("id", "movie-search-form")
         $("#search").attr("placeholder", "Search Movies and Tv Shows")
+        $("#search-results").empty()
         console.log(searchEl)
     }else if (searchEl.id === "movie-search-form") {
         $(searchEl).attr("id", "game-search-form")
         $("#search").attr("placeholder", "Search Games")
+        $("#search-results").empty()
         console.log(searchEl)
     }
 });
    
 //when a value is submitted the id of the form is checked and depending on said id either the getMovieData or getGamData
-searchEl.addEventListener("submit", function(e) {
-    e.preventDefault();
+searchEl.addEventListener("submit", function(event) {
+  var selectSearchModal;
+    event.preventDefault();
     searchInput = searchEl.children[0].value;
     
       if (searchEl.id === "game-search-form") {

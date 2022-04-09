@@ -27,12 +27,22 @@
   <main class="d-flex flex-column align-items-center">
     <form id="game-search-form" class="search-form text-center bg-dark d-flex">
       <input name="search" class="form-control " id="search" type="text" placeholder="Games"></input>
-      <button class="rounded-circle btn btn-outline ms-3" id="apiSwitch" type="button"><i class="fa-solid fa-repeat"></i></button>
+      <button class="rounded-circle btn btn-outline-light ms-3" id="apiSwitch" type="button"><i class="fa-solid fa-repeat"></i></button>
     </form>
 
 
     <div>
       <ul id="search-results" class="has-text-centered "></ul>
+    </div>
+
+    <div class="text-center align-items-center modal-div aria-hidden="true"">
+      <h2 class="modal-title">Would you like to search</h2>
+      <br />
+      <button class="game-button">Games</button>
+      <br />
+      <h2 class="modal-or">or</h2>
+      <br />
+      <button class="movie-button">Movies and Tv Shows?</button>
     </div>
   </main>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
