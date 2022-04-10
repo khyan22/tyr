@@ -26,7 +26,7 @@ var searchInput;
 
 
                 $(saveBtn).on("click", function() {
-                    var savedText = $(this).parent().html()
+                    var savedText = $(this).parent().text()
                     var savedLi = document.createElement("li")
 
 
@@ -56,7 +56,7 @@ var getMovieData = function(movie) {
   
   const options = {
     method: 'GET',
-    url: 'https://imdb-data-searching.p.rapidapi.com/om?s=' + movie ,
+    url: 'https://imdb-data-searching.p.rapidapi.com/om?s=' + movie , option,
     headers: {
       'X-RapidAPI-Host': 'imdb-data-searching.p.rapidapi.com',
       'X-RapidAPI-Key': 'b3f2425f53msh6ddaa98247cb618p193474jsn1b3a90d328d2'
