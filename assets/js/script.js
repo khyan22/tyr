@@ -21,12 +21,12 @@ var searchInput;
                 var listedGame = document.createElement("li")
                 listedGame.innerHTML = gameName + " <br /> " + " ESRB Rating: " + esrbRating + " | " + "Release Date: " + releaseDate
                 $(listedGame).append(saveBtn)
-                $(listedGame).addClass("search-result-li mt-3 text-dark h-100 p-4 position-relative text-center")
+                $(listedGame).addClass("search-result-li mt-3 text-dark h-100 p-4 position-relative text-center");
                 $("#search-results").append(listedGame);
 
 
                 $(saveBtn).on("click", function() {
-                    var savedText = $(this).parent().html()
+                    var savedText = $(this).parent().text()
                     var savedLi = document.createElement("li")
 
 
@@ -154,12 +154,14 @@ searchEl.addEventListener("submit", function(event) {
     
       if (searchEl.id === "#game-search-form") {
           console.log("game")
+          $("#search-results").empty()
           searchEl.children[0].value = "";
           getGameData(searchInput);
       } else if (searchEl.id === "#movie-search-form") {
         console.log("movies")
-          getMovieData(searchInput);
-          searchEl.children[0].value = "";
+        $("#search-results").empty()
+        searchEl.children[0].value = "";
+        getMovieData(searchInput);
       }
 });
   
