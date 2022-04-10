@@ -1,4 +1,5 @@
 var searchEl = document.querySelector("form")
+var searchButtonEl = document.getElementById("form-submit")
 var savedHistory = JSON.parse(localStorage.getItem("savedHistory")) || [];
 var searchInput;
 
@@ -25,7 +26,7 @@ var searchInput;
 
 
                 $(saveBtn).on("click", function() {
-                    var savedText = $(this).parent().text()
+                    var savedText = $(this).parent().html()
                     var savedLi = document.createElement("li")
 
 
@@ -52,89 +53,117 @@ var searchInput;
 
 
 var getMovieData = function(movie) {
+  
   const options = {
     method: 'GET',
-    url: 'https://imdb-data-searching.p.rapidapi.com' ,
+    url: 'https://imdb-data-searching.p.rapidapi.com/om?s=' + movie ,
     headers: {
-      'X-RapidAPI-Host': 'imdb-data-searching.p.rapidapi.com/om?s=' + movie,
-      'X-RapidAPI-Key': 'dfa10f1c4bmsh8392381bda8f0fep126b16jsn329de48d0cb8'
+      'X-RapidAPI-Host': 'imdb-data-searching.p.rapidapi.com',
+      'X-RapidAPI-Key': 'b3f2425f53msh6ddaa98247cb618p193474jsn1b3a90d328d2'
     }
   };
 
-  fetch('https://imdb-data-searching.p.rapidapi.com/om?t=the%20game', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
 
-//   axios.request(options).then(response => {
-//       for (i = 0; i < response.data.Search.length; i++) {
-//         var movieName = response.data.Search[i].Title;
-//         var movieYear = response.data.Search[i].Year;
-//         var saveBtn = document.createElement("button");
-//         console.log(movieYear);
+  // dfa10f1c4bmsh8392381bda8f0fep126b16jsn329de48d0cb8
+  // fetch('https://imdb-data-searching.p.rapidapi.com/om?t=the%20game', options)
+	// .then(response => response.json())
+	// .then(response => console.log(response))
+	// .catch(err => console.error(err));
 
-//         saveBtn.innerHTML = "<i class='fa-solid fa-plus'></i>";
-//         $(saveBtn).addClass("position-absolute top-0 end-0 translate-middle-x rounded-circle btn btn-outline-secondary mt-1 ms-4");
-//         $(saveBtn).attr("id", "saveBtn");
+  axios.request(options).then(response => {
+      for (i = 0; i < response.data.Search.length; i++) {
+        var movieName = response.data.Search[i].Title;
+        var movieYear = response.data.Search[i].Year;
+        var saveBtn = document.createElement("button");
+        console.log(movieYear);
 
-//         var listedMovie = document.createElement("li");
-//         listedMovie.innerHTML = movieName + "<br />" + "Release Date: " + movieYear;
-//         $(listedMovie).append(saveBtn);
-//         $(listedMovie).addClass("search-result-li mt-3 text-dark h-100 p-4 position-relative");
-//         $("#search-results").append(listedMovie);
+        saveBtn.innerHTML = "<i class='fa-solid fa-plus'></i>";
+        $(saveBtn).addClass("position-absolute top-0 end-0 translate-middle-x rounded-circle btn btn-outline-secondary mt-1 ms-4");
+        $(saveBtn).attr("id", "saveBtn");
+
+        var listedMovie = document.createElement("li");
+        listedMovie.innerHTML = movieName + "<br />" + "Release Date: " + movieYear;
+        $(listedMovie).append(saveBtn);
+        $(listedMovie).addClass("search-result-li mt-3 text-dark h-100 p-4 position-relative");
+        $("#search-results").append(listedMovie);
 
         
-//         $(saveBtn).on("click", function() {
-//             var savedText = $(this).parent().text()
-//             var savedLi = document.createElement("li")
+        $(saveBtn).on("click", function() {
+            var savedText = $(this).parent().text()
+            var savedLi = document.createElement("li")
 
 
-//             $(savedLi).text(savedText);
-//             console.log(savedLi)
-//             $(savedLi).addClass("dropdown-item");
+            $(savedLi).text(savedText);
+            console.log(savedLi)
+            $(savedLi).addClass("dropdown-item");
             
-//             $("#saveList").append(savedLi);
+            $("#saveList").append(savedLi);
 
-//             });
-//       }
-//       console.log(response)
-//   })
+            });
+      }
+      console.log(response)
+  })
 
 };
 
 
+var modalObj = document.getElementById("#modal")
+if(sessionStorage.getItem('#modal') !== 'true'){
+  $('#modal').css('display','block');
+  sessionStorage.setItem('#ad_modal','true');
+}
+
+$(".game-button").on("click", function() {
+
+  $('#modal').remove()
+  $('form').attr("id", "#game-search-form")
+  $("#search").attr("placeholder", "Search Games");
+  console.log($("form"))
+});
+
+$(".movie-button").on("click", function() {
+  $('#modal').remove()
+  $('#search-form').attr("id", "#movie-search-form")
+  $("#search").attr("placeholder", "Search Movies and TV Show");
+  console.log($(".search-form"))
+});
+
 //changes search input id
 $("#apiSwitch").on("click", function() {
-    var gameSearchBar = document.getElementById("#")
     
-    if (searchEl.id === "game-search-form") {
-        $(searchEl).attr("id", "movie-search-form")
+    if (searchEl.id === "#game-search-form") {
+        console.log("switch to movie")
+        $(searchEl).attr("id", "#movie-search-form")
         $("#search").attr("placeholder", "Search Movies and Tv Shows")
         $("#search-results").empty()
-        console.log(searchEl)
-    }else if (searchEl.id === "movie-search-form") {
-        $(searchEl).attr("id", "game-search-form")
-        $("#search").attr("placeholder", "Search Games")
-        $("#search-results").empty()
-        console.log(searchEl)
+        
+    }else if (searchEl.id === "#movie-search-form") {
+        console.log("switch to game");
+        $(searchEl).attr("id", "#game-search-form");
+        $("#search").attr("placeholder", "Search Games");
+        $("#search-results").empty();
+        
     }
 });
    
 //when a value is submitted the id of the form is checked and depending on said id either the getMovieData or getGamData
 searchEl.addEventListener("submit", function(event) {
-  var selectSearchModal;
+  console.log("event")
     event.preventDefault();
     searchInput = searchEl.children[0].value;
     
-      if (searchEl.id === "game-search-form") {
+      if (searchEl.id === "#game-search-form") {
+          console.log("game")
+          searchEl.children[0].value = "";
           getGameData(searchInput);
-          $("#search").val("");
-      } else if (searchEl.id === "movie-search-form") {
+      } else if (searchEl.id === "#movie-search-form") {
+        console.log("movies")
           getMovieData(searchInput);
           searchEl.children[0].value = "";
       }
 });
   
+
 
 var loadSaveList = () => {
     for (var i = 0; i < savedHistory.length; i++) {
