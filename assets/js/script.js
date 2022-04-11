@@ -164,8 +164,9 @@ searchEl.addEventListener("submit", function(event) {
           getGameData(searchInput);
       } else if (searchEl.id === "#movie-search-form") {
         console.log("movies")
-          getMovieData(searchInput);
-          searchEl.children[0].value = "";
+        $("#search-results").empty()
+        searchEl.children[0].value = "";
+        getMovieData(searchInput);
       }
 });
   
