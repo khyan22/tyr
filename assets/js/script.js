@@ -11,17 +11,23 @@ var searchInput;
               console.log(response);
             for (i = 0; i < response.results.length; i++) {
                 var gameName = response.results[i].name
-                var esrbRating = response.results[i].esrb_rating.name
+                var esrbRating = response.results[i].esrb_rating
+                var esrb = $(esrbRating).attr("name")
+                console.log(esrb)
                 var releaseDate = response.results[i].released
                 var saveBtn = document.createElement("button")
                 
                 saveBtn.innerHTML = "<i class='fa-solid fa-plus'></i>"
                 $(saveBtn).addClass("position-absolute top-0 end-0 translate-middle-x rounded-circle btn btn-outline-secondary mt-1 ms-4")
 
+                if (esrb === undefined ) {
+                  esrb = "Unknown"
+                }
+                console.log(esrb)
                 var listedGame = document.createElement("li")
-                listedGame.innerHTML = gameName + " <br /> " + " ESRB Rating: " + esrbRating + " | " + "Release Date: " + releaseDate
+                listedGame.innerHTML = gameName + " <br /> " + " ESRB Rating: " + esrb + " | " + "Release Date: " + releaseDate
                 $(listedGame).append(saveBtn)
-                $(listedGame).addClass("search-result-li mt-3 text-dark h-100 p-4 position-relative text-center")
+                $(listedGame).addClass("search-result-li mt-3 text-dark h-100 p-4 position-relative text-center ")
                 $("#search-results").append(listedGame);
 
 
@@ -56,7 +62,7 @@ var getMovieData = function(movie) {
   
   const options = {
     method: 'GET',
-    url: 'https://imdb-data-searching.p.rapidapi.com/om?s=' + movie , option,
+    url: 'https://imdb-data-searching.p.rapidapi.com/om?s=' + movie ,
     headers: {
       'X-RapidAPI-Host': 'imdb-data-searching.p.rapidapi.com',
       'X-RapidAPI-Key': 'b3f2425f53msh6ddaa98247cb618p193474jsn1b3a90d328d2'
@@ -64,7 +70,7 @@ var getMovieData = function(movie) {
   };
 
 
-  // dfa10f1c4bmsh8392381bda8f0fep126b16jsn329de48d0cb8
+  // khyan's key dfa10f1c4bmsh8392381bda8f0fep126b16jsn329de48d0cb8
   // fetch('https://imdb-data-searching.p.rapidapi.com/om?t=the%20game', options)
 	// .then(response => response.json())
 	// .then(response => console.log(response))
@@ -153,7 +159,7 @@ searchEl.addEventListener("submit", function(event) {
     searchInput = searchEl.children[0].value;
     
       if (searchEl.id === "#game-search-form") {
-          console.log("game")
+          $("#search-results").empty()
           searchEl.children[0].value = "";
           getGameData(searchInput);
       } else if (searchEl.id === "#movie-search-form") {

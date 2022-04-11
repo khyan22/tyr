@@ -13,12 +13,14 @@
   <title>Tyr | Home</title>
 </head>
 
-<body class="bg-dark">
-  <header class="d-flex justify-content-between bg-dark m-3">
-    <a class="fs-1" href="index.html">TYR</a>
+<body class="bg-dark ">
 
-    <div class="dropdown">
-      <a class="dropdown-toggle" role="button" id="toggleDropDown" data-bs-toggle="dropdown" aria-expanded="false">Saved List</a>
+  <header class="d-flex  justify-content-between bg-dark m-3 ">
+    <a class="fs-1 " href="index.html">TYR</a>
+
+    <!-- saved list <ul> -->
+    <div class="dropdown ">
+      <a class="dropdown-toggle  " role="button" id="toggleDropDown" data-bs-toggle="dropdown" aria-expanded="false">Saved List</a>
 
       <ul class="dropdown-menu" aria-labelledby="toggleDropDown" id="saveList"></ul>
     </div>
@@ -26,7 +28,8 @@
 
   <main class="d-flex flex-column align-items-center">
     
-    <div id="form-holder">
+    <!-- this is the search form -->
+    <div id="form-holder d-flex">
       <form id="search-form" class="search-form text-center bg-dark d-flex">
         <input name="search" class="form-control " id="search" type="text" placeholder="..." aria-describedby="form-submit"></input>
         <button class="rounded-circle btn btn-outline-light ms-3" id="apiSwitch" type="button" >
@@ -35,6 +38,8 @@
       </form>
     </div>
 
+
+    <!-- search results go here -->
     <div>
       <ul id="search-results" class="has-text-centered "></ul>
     </div>
@@ -51,6 +56,9 @@
           <button type="button" class="game-button btn btn-primary" data-bs-dismiss="modal">Games</button>
           <P class="fs-3">or</p>
           <button type="button" class="movie-button btn btn-primary" data-bs-dismiss="modal">Movies and TV Shows</button>
+        </div>
+        <div>
+          <P class="fs-4">If you want to switch just press the <i class="fa-solid fa-repeat "></i> button next to the search bar.</P>
         </div>
       </div>
     </div>
